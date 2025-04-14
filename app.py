@@ -5,14 +5,14 @@ import urllib.parse
 from flask import Flask, request, jsonify
 from sklearn.preprocessing import StandardScaler
 
-# ✅ Load Meta-Model
-META_MODEL_PATH = "meta_model_xgboost.pkl"
+# ✅ Load Random Forest Model
+RF_MODEL_PATH = "random_forest_model.pkl"
 
-if os.path.exists(META_MODEL_PATH):
-    meta_model = joblib.load(META_MODEL_PATH)
-    print("✅ Meta-Model Loaded Successfully!")
+if os.path.exists(RF_MODEL_PATH):
+    rf_model = joblib.load(RF_MODEL_PATH)
+    print("✅ Random Forest Model Loaded Successfully!")
 else:
-    raise FileNotFoundError(f"❌ {META_MODEL_PATH} not found. Train and save the model first.")
+    raise FileNotFoundError(f"❌ {RF_MODEL_PATH} not found. Train and save the model first.")
 
 # Function to Extract Features from a URL
 def extract_features(url):
@@ -44,8 +44,8 @@ def predict():
     features = extract_features(url)
     features_df = pd.DataFrame([features])
 
-    # Make Prediction using Meta-Model
-    prediction = meta_model.predict(features_df)[0]
+    # Make Prediction using Random Forest Model
+    prediction = rf_model.predict(features_df)[0]
 
     return jsonify({
         "url": url,
