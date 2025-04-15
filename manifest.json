@@ -5,7 +5,7 @@
   "description": "Detect phishing sites automatically.",
   "permissions": ["storage", "notifications"],
   "host_permissions": [
-    "https://d171-34-16-166-188.ngrok-free.app/*"
+    "https://your-fastapi-app.on.railway.app/*"
   ],
   "background": {
     "service_worker": "background.js"
